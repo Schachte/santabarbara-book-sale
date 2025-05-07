@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/cloudflare-pages.json",
+  "name": "book-search-app",
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "routes": [
+    {
+      "pattern": "/*",
+      "dest": "/index.html"
+    }
+  ]
+}

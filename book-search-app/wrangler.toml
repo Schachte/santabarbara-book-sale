@@ -1,0 +1,20 @@
+name = "book-search-app"
+compatibility_date = "2023-10-30"
+
+[build]
+command = "npm run build"
+output_directory = "build"
+
+[site]
+bucket = "./build"
+
+[env.production]
+routes = [
+  { pattern = "booksale.ryan-schachte.com", custom_domain = true }
+]
+
+# Configure SPA routing - send all routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
