@@ -218,6 +218,7 @@ const BookSearch = () => {
     e.target.onerror = null; // Prevent infinite callbacks
     e.target.src = `https://via.placeholder.com/120x160/2d3748/e2e8f0?text=${encodeURIComponent(e.target.title.substring(0, 10))}`;
   };
+
   return (
     <div className="min-h-screen bg-gray-900 py-8 px-4 text-gray-100">
       <div className="max-w-6xl mx-auto">
@@ -271,6 +272,7 @@ const BookSearch = () => {
                     </ul>
                   </div>
                 )}
+              </div>
               
               {/* Category filter - styled like the screenshot */}
               <div className="w-full">
@@ -354,8 +356,8 @@ const BookSearch = () => {
                       >
                         {/* Star button for favorites */}
                         <button
-                          className={`absolute top-2 right-2 z-20 bg-gray-800 rounded-full p-1 transition-colors duration-200 ${
-                            isFavorite ? 'text-amber-300 hover:text-amber-200' : 'text-gray-400 hover:text-amber-300'
+                          className={`absolute top-2 right-2 z-30 bg-gray-800/80 hover:bg-gray-700 rounded-full p-1.5 transition-colors duration-200 ${
+                            isFavorite ? 'text-amber-300 hover:text-amber-400' : 'text-gray-400 hover:text-amber-300'
                           }`}
                           onClick={(e) => toggleFavorite(book, e)}
                           title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
@@ -364,14 +366,16 @@ const BookSearch = () => {
                         </button>
                         
                         <div className="h-48 bg-gray-700 flex items-center justify-center relative overflow-hidden">
-                          {/* Blurred background stretched image */}
+                          {/* Blurred background stretched image - darker and more blurred */}
                           <div className="absolute inset-0 z-0">
                             <img 
                               src={`/covers/${book.id}.jpg`}
                               alt=""
-                              className="h-full w-full object-cover blur-md scale-110 opacity-60"
+                              className="h-full w-full object-cover blur-xl scale-150 opacity-20"
                               onError={handleImageError}
                             />
+                            {/* Additional darkening overlay */}
+                            <div className="absolute inset-0 bg-gray-900 opacity-60"></div>
                           </div>
                           
                           {/* Non-stretched, properly sized foreground image */}
@@ -386,7 +390,7 @@ const BookSearch = () => {
                           </div>
                           
                           {/* Hover overlay */}
-                          <div className="absolute inset-0 z-20 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center">
+                          <div className="absolute inset-0 z-20 bg-black bg-opacity-0 group-hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center">
                             <span className="text-white opacity-0 group-hover:opacity-100 bg-purple-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                               Search on Google
                             </span>
